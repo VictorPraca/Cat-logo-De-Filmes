@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEVICOMFlix</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=search" />
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">CEVICOMFlix</div>
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link">Início</a></li>
+                <li><a href="#" class="nav-link">Ação</a></li>
+                <li><a href="#" class="nav-link">Comédia</a></li>
+                <li><a href="#" class="nav-link">Nacional</a></li>
+                <li><a href="#" class="nav-link">Terror</a></li>
+            </ul>
+            <div class="nav-search">
+                <input type="text" id="search-movie" />
+                <button class="material-symbols-rounded">search</button>
+            </div>
+            <div class="nav-buttons">
+                <a href="#" class="btn btn-login">Login</a>
+                <a href="#" class="btn btn-register">Registrar-se</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container"></div>
+    <section class="carousel-section">
+        <p>Só no CEVICOMFlix<p>
+        <div class="carousel-container" data-endpoint="movie/popular">
+            <button class="carousel-btn prev-btn" aria-label="Anterior">‹</button>
+            <div class="carousel"></div>
+            <button class="carousel-btn next-btn" aria-label="Próximo">›</button>
+        </div>
+    </section>
+    
+    <section class="carousel-section">
+        <p>Mais Bem Avaliados</p>
+        <div class="carousel-container" data-endpoint="movie/top_rated">
+            <button class="carousel-btn prev-btn" aria-label="Anterior">‹</button>
+            <div class="carousel"></div>
+            <button class="carousel-btn next-btn" aria-label="Próximo">›</button>
+        </div>
+    </section>
+    
+    <section class="carousel-section">
+        <p>Próximos Lançamentos</p>
+        <div class="carousel-container" data-endpoint="movie/upcoming">
+            <button class="carousel-btn prev-btn" aria-label="Anterior">‹</button>
+            <div class="carousel"></div>
+            <button class="carousel-btn next-btn" aria-label="Próximo">›</button>
+        </div>
+    </section>
+
+    <dialog id="movie-details-dialog">
+        <p>Carregando...</p>
+    </dialog>
+    </div>
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>
