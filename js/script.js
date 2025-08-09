@@ -3,13 +3,65 @@ document.addEventListener('DOMContentLoaded', () => {
     const apiKey = 'f83b3e2e8538738c27943defc987dab7';
     const imageBaseUrl = 'https://image.tmdb.org/t/p/w500';
     const backdropBaseUrl = 'https://image.tmdb.org/t/p/w1280';
-    
     const dialog = document.getElementById('movie-details-dialog');
+
+    const searchInput = document.getElementById('search-movie');
+    const searchButton = document.getElementById('search-btn');
 
     if(!dialog) {
         console.error("Elemento <dialog> com ID 'movie-datails-dialog' não encontrado no HTML");
         return;
     }
+
+    async function handleSearch() {
+        const query = searchInput.value.trim();
+
+        if (!query) {
+            return; 
+        }
+
+        console.log(`Buscando por: ${query}`);
+        const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(query)}&language=pt-BR`;
+
+        dialog.innerHTML = '<p style="padding: 20px;">Buscando...</p>';
+        dialog.showModal();
+
+        try {
+            const response = await fetch(searchUrl);
+            if (!response.ok) throw new Error('Erro na busca da API');
+
+            const data = await response.json();
+            
+            if (data.results && data.results.length > 0) {
+                const firstMovie = data.results[0];
+                await showMovieDetails(firstMovie.id);
+            } else {
+                dialog.innerHTML = `
+                    <div class="dialog-error">
+                        <p>Filme não encontrado</p>
+                        <small>Tente buscar por outro título.</small>
+                    </div>
+                    <div class="dialog-footer">
+                        <button class="close-btn">OK</button>
+                    </div>
+                `;
+                dialog.querySelector('.close-btn').addEventListener('click', () => dialog.close());
+            }
+
+        } catch (error) {
+            console.error("Erro na função de busca:", error);
+            dialog.innerHTML = `<div class="dialog-error"><p>Ocorreu um erro na busca.</p></div>
+                                <div class="dialog-footer"><button class="close-btn">Fechar</button></div>`;
+            dialog.querySelector('.close-btn').addEventListener('click', () => dialog.close());
+        }
+    }
+
+    searchButton.addEventListener('click', handleSearch);
+    searchInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            handleSearch();
+        }
+    });
 
     async function initializeCarousel(containerElement) {
         const carousel = containerElement.querySelector('.carousel');

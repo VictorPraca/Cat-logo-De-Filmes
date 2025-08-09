@@ -26,6 +26,7 @@ a {
     justify-content: space-around;
     align-items: center;
     padding: 20px 0;
+    background-color: #202124;
 }
 
 .logo {
@@ -244,4 +245,16 @@ dialog {
     font-weight: bold;
     border: none;
     cursor: pointer;
+}
+
+.dialog-error {
+    padding: 30px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.dialog-error small {
+    display: block;
+    margin-top: 10px;
+    color: #a0a0a0;
 }
