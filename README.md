@@ -47,13 +47,19 @@ Você pode clonar este repositório usando Git:
 Bash
 
 git clone https://github.com/VictorPraca/Catalogo-De-Filmes
+
 Ou simplesmente baixe os arquivos index.html, css/style.css e js/script.js e organize-os na seguinte estrutura de pastas:
 
 projeto-cevixomflix/
+
 ├── css/
+
 │   └── style.css
+
 ├── js/
+
 │   └── script.js
+
 └── index.html
 
 
